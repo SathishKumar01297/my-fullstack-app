@@ -21,12 +21,14 @@
   </div>
 
   <script>
-    async function fetchData() {
-      // Frontend requesting data from Backend
-      const response = await fetch('/api/message');
-      const data = await response.json();
-      document.getElementById('output').innerText = data.text;
-    }
+  async function fetchData() {
+    // Match the backend route '/api/data'
+    const response = await fetch('/api/data');
+    const data = await response.json();
+    
+    // Match the key 'message' returned by Express
+    document.getElementById('output').innerText = data.message;
+  }
   </script>
 
 </body>
