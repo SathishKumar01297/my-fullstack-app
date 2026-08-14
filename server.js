@@ -1,16 +1,21 @@
 const express = require('express');
+const path = require('path');
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-// Serve static frontend files from the "public" folder
-app.use(express.static('public'));
+// Tell Express to serve files from inside the 'public' folder
+app.use(express.static(path.join(__dirname, 'public')));
 
-// BACKEND API ROUTE
-app.get('/api/message', (req, res) => {
-  res.json({ text: "Hello! This live data came directly from your Node.js BACKEND! 🚀" });
+// API endpoint
+app.get('/api/data', (req, res) => {
+    res.json({ message: "Hello from Backend API!" });
 });
 
-// Start the server
-const PORT = process.env.PORT || 3000;
+// Serve index.html from inside the 'public' folder
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
