@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Full-Stack App</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 80px; background-color: #f0f4f8; }
+    .card { background: white; padding: 40px; border-radius: 12px; display: inline-block; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    button { padding: 12px 24px; font-size: 16px; background-color: #0070f3; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    button:hover { background-color: #0051a2; }
+    #output { margin-top: 25px; font-size: 18px; font-weight: bold; color: #10b981; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Frontend & Backend Demo</h1>
+    <p>Click the button to request data from your local backend server:</p>
+    <button onclick="fetchData()">Call Backend API</button>
+    <p id="output"></p>
+  </div>
+
+  <script>
+    async function fetchData() {
+      // Frontend requesting data from Backend
+      const response = await fetch('/api/message');
+      const data = await response.json();
+      document.getElementById('output').innerText = data.text;
+    }
+  </script>
+
+</body>
+</html>
